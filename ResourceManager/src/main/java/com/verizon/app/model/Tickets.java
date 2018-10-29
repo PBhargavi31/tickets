@@ -1,11 +1,12 @@
 package com.verizon.app.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.type.EnumType;
+
 
 @Entity
 @Table(name = "tickets")
@@ -18,10 +19,10 @@ public class Tickets {
 	private String tDesc;
 	private long empid;
 
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private TStatus status;
 
-	@Enumerated()
+	@Enumerated(EnumType.STRING)
 	private Priority priority;
 	private String startTime;// time when ticket was raised
 	private String actionTime;// approval or rejection timestamp
