@@ -2,6 +2,8 @@ package com.verizon.app.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,11 +14,12 @@ import org.hibernate.type.EnumType;
 public class Tickets {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long tId;
 
-	private String tSub;
-	private String tDesc;
-	private long empid;
+	private String tsub;
+	private String tdesc;
+	private long uid;
 
 	@Enumerated
 	private TStatus status;
@@ -24,7 +27,7 @@ public class Tickets {
 	@Enumerated()
 	private Priority priority;
 	private String startTime;// time when ticket was raised
-	private String actionTime;// approval or rejection timestamp
+	private String mTime;// approval or rejection timestamp
 	private String endTime;// when ticket was compeltely addressed
 
 	public long gettId() {
@@ -35,28 +38,15 @@ public class Tickets {
 		this.tId = tId;
 	}
 
-	public String gettSub() {
-		return tSub;
+	
+
+
+	public long getUid() {
+		return uid;
 	}
 
-	public void settSub(String tSub) {
-		this.tSub = tSub;
-	}
-
-	public String gettDesc() {
-		return tDesc;
-	}
-
-	public void settDesc(String tDesc) {
-		this.tDesc = tDesc;
-	}
-
-	public long getEmpid() {
-		return empid;
-	}
-
-	public void setEmpid(long empid) {
-		this.empid = empid;
+	public void setUid(long uid) {
+		this.uid = uid;
 	}
 
 	public TStatus getStatus() {
@@ -83,12 +73,29 @@ public class Tickets {
 		this.startTime = startTime;
 	}
 
-	public String getActionTime() {
-		return actionTime;
+	
+	public String getTsub() {
+		return tsub;
 	}
 
-	public void setActionTime(String actionTime) {
-		this.actionTime = actionTime;
+	public void setTsub(String tsub) {
+		this.tsub = tsub;
+	}
+
+	public String getTdesc() {
+		return tdesc;
+	}
+
+	public void setTdesc(String tdesc) {
+		this.tdesc = tdesc;
+	}
+
+	public String getmTime() {
+		return mTime;
+	}
+
+	public void setmTime(String mTime) {
+		this.mTime = mTime;
 	}
 
 	public String getEndTime() {
@@ -103,17 +110,17 @@ public class Tickets {
 		super();
 	}
 
-	public Tickets(long tId, String tSub, String tDesc, long empid, TStatus status, Priority priority, String startTime,
-			String actionTime, String endTime) {
+	public Tickets(long tId, String tsub, String tdesc, long uid, TStatus status, Priority priority, String startTime,
+			String mTime, String endTime) {
 		super();
 		this.tId = tId;
-		this.tSub = tSub;
-		this.tDesc = tDesc;
-		this.empid = empid;
+		this.tsub = tsub;
+		this.tdesc = tdesc;
+		this.uid = uid;
 		this.status = status;
 		this.priority = priority;
 		this.startTime = startTime;
-		this.actionTime = actionTime;
+		this.mTime = mTime;
 		this.endTime = endTime;
 	}
 

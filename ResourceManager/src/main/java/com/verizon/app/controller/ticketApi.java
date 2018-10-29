@@ -64,18 +64,18 @@ public ResponseEntity<Tickets> addTicketsAction(@RequestBody Tickets ticket) {
 		
 	}
 	
-//	@PutMapping("/{tId}/{tstatus}")
-//	public ResponseEntity<Tickets> updateTicketState(@PathVariable("tstatus") String tstatus,@PathVariable("tId") long tId){
-//		ResponseEntity<Tickets> resp=null;
-////		System.out.println("================================PANICHESTADI===================================");
-////		System.out.println("Ticket Id is+++++++++++++++++++++++++++++"+tId);
-////		System.out.println("Ticket Status+++++++++++++++++++++++++++++"+s);
-//		Tickets t = tService.setStatusById(tstatus, tId);
-//		return new ResponseEntity<>(t, HttpStatus.OK);
-//	}
+	@PutMapping("/{tId}/{tstatus}")
+	public ResponseEntity <Tickets> updateTicketState(@PathVariable("tstatus") String tstatus,@PathVariable("tId") long tId){
+		tService.setStatusById(tstatus, tId);
+		Tickets t = tService.getTicketById(tId);
+		ResponseEntity<Tickets> resp=null;
+		Tickets tickets =tService.getTicketById(tId);
+		resp = new ResponseEntity<>(HttpStatus.OK);
+		return resp;
+	}
 	
-	@GetMapping("//{tstatus}")
-	public ResponseEntity<List<Tickets>> getTicketStatus(@PathVariable("tstatus") TStatus tstatus) {
+	@GetMapping("/status/{tstatus}")
+	public ResponseEntity<List<Tickets>> getTicketStatus(@PathVariable("tstatus") String tstatus) {
 		ResponseEntity<List<Tickets>> resp = null;
 		List<Tickets> tickets = tService.getTicketsByStatus(tstatus);
 		if (tickets == null)
@@ -98,7 +98,21 @@ public ResponseEntity<Tickets> addTicketsAction(@RequestBody Tickets ticket) {
 			resp = new ResponseEntity<List<Tickets>>(tickets, HttpStatus.OK);
 		return resp;
 	}	
+	
+	@GetMapping("/uid/{uid}")
+	public ResponseEntity <Tickets> getTicketuId(@PathVariable("uid") long uid) {
+		
+		ResponseEntity<Tickets> resp=null;
+		Tickets tickets =tService.getTicketByUid(uid);
+		if (tickets == null)
+			resp = new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		else
+			resp = new ResponseEntity<>(tickets, HttpStatus.OK);
+		return resp;
+		
+	}
 
+	
 
 }
 

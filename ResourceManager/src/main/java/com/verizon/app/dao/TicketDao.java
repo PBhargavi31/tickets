@@ -22,15 +22,20 @@ public interface TicketDao extends JpaRepository<Tickets, Long> {
 	 * save() and findAll() methods of Jparepository, hence we need not declare explicitly here.
 	 */
 
-	boolean existsByTId(long tId); // to check availability of tickets
 
+	boolean existsByTId(long tid); // to check availability of tickets
+
+	
+	boolean existsByUid(long uid);
+	
 	Optional<Tickets> findByTId(long tId); // to find ticket using ticket Id
 
+	
+	Optional<Tickets> findByUid(long uid);
+	
+	
 	List<Tickets> findAllByStatus(TStatus tstatus);   // finding tickets based on status
 
-	List<Tickets> findAllByPriority(Priority priority);  /* To list out urgent tickets, normal and less urgent tickets
-														 * according to the requirement..*/
-//	@Modifying
-//	@Query("update Tickets set u.firstname = ?1, u.lastname = ?2 where u.id = ?3")
-//	void setUserInfoById(String firstname, String lastname, Integer userId);
+	List<Tickets> findAllByPriority(Priority priority);  
+
 }

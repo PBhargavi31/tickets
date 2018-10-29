@@ -39,8 +39,10 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Tickets> getTicketsByStatus(TStatus tstatus) {
-		return tdao.findAllByStatus(tstatus);
+	public List<Tickets> getTicketsByStatus(String tstatus) {
+		tstatus=tstatus.toUpperCase();
+		TStatus ts = TStatus.valueOf(tstatus);
+		return tdao.findAllByStatus(ts);
 	}
 
 	@Override
@@ -49,17 +51,44 @@ public class TicketServiceImpl implements TicketService {
 		return tdao.findAllByPriority(priority);
 	}
 
+	
+	@Override
+	public void setStatusById(String status,long tId){
+		status=status.toUpperCase();
+		TStatus ts = TStatus.valueOf(status);
+		Tickets t=tdao.getOne(tId);
+		t.setStatus(ts);
+		tdao.save(t);
+	}
+
+	
+	@Override
+	public boolean existsByUid(long uid) {
+		
+		return tdao.existsByUid(uid);
+	}
+
+	@Override
+	public Tickets getTicketByUid(long uid) {
+		
+		
+		Optional<Tickets> opt = tdao.findByUid(uid);
+		return opt.isPresent()?opt.get():null;
+		
+		
+		
+		
+	}
+
 	@Override
 	public boolean existsByTId(long tId) {
 		return tdao.existsByTId(tId);
 	}
-//	@Override
-//	public Tickets setStatusById(String status,long tId){
-//		status=status.toUpperCase();
-//		TStatus ts = TStatus.valueOf(status);
-//		Tickets t=tdao.getOne(tId);
-//		t.setStatus(ts);
-//		return t;
-//	}
+	
+	
+	
+
+	
+	
 	
 }

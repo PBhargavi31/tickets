@@ -14,8 +14,12 @@ public interface TicketService {
 	public void addTicket(Tickets ticket);
 
 	public boolean existsByTId(long tId);
+	public boolean existsByUid(long uid);
 	public Tickets getTicketById(long tId);
-	public List<Tickets> getTicketsByStatus(TStatus tstatus);
+	public Tickets getTicketByUid(long uid);
+	
+	
+	public List<Tickets> getTicketsByStatus(String tstatus);
 	public List<Tickets> getTicketsByPriority(Priority priority);
-//	public Tickets setStatusById(String status,long tId);
+	public void setStatusById(String status,long tId);
 }
