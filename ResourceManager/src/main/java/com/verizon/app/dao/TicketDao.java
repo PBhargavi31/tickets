@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.verizon.app.model.Priority;
@@ -28,11 +30,7 @@ public interface TicketDao extends JpaRepository<Tickets, Long> {
 
 	List<Tickets> findAllByPriority(Priority priority);  /* To list out urgent tickets, normal and less urgent tickets
 														 * according to the requirement..*/
-	
-	
-	
-	
-	
-	
-
+//	@Modifying
+//	@Query("update Tickets set u.firstname = ?1, u.lastname = ?2 where u.id = ?3")
+//	void setUserInfoById(String firstname, String lastname, Integer userId);
 }

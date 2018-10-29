@@ -53,7 +53,13 @@ public class TicketServiceImpl implements TicketService {
 	public boolean existsByTId(long tId) {
 		return tdao.existsByTId(tId);
 	}
-
+//	@Override
+//	public Tickets setStatusById(String status,long tId){
+//		status=status.toUpperCase();
+//		TStatus ts = TStatus.valueOf(status);
+//		Tickets t=tdao.getOne(tId);
+//		t.setStatus(ts);
+//		return t;
+//	}
 	
-
 }

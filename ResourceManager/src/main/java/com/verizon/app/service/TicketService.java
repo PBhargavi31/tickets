@@ -17,8 +17,5 @@ public interface TicketService {
 	public Tickets getTicketById(long tId);
 	public List<Tickets> getTicketsByStatus(TStatus tstatus);
 	public List<Tickets> getTicketsByPriority(Priority priority);
-
-	
-
-
+//	public Tickets setStatusById(String status,long tId);
 }
